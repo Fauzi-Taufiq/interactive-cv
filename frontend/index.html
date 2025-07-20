@@ -1,13 +1,92 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="id">
   <head>
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
+    <meta name="description" content="Portfolio Muhammad Taufiq Al Fauzi - Web Developer & UI/UX Designer">
+    <meta name="keywords" content="web developer, UI/UX designer, Vue.js, portfolio">
+    <meta name="author" content="Muhammad Taufiq Al Fauzi">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <title>Muhammad Taufiq Al Fauzi - Portfolio</title>
+    
+    <style>
+      /* Preload critical styles */
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #2596be 0%, #145369 50%, #041014 100%);
+        min-height: 100vh;
+      }
+      
+      /* Smooth scrolling for the entire page */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Loading animation */
+      .loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #2596be 0%, #145369 50%, #041014 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+      
+      .loading.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
+    <!-- Loading screen -->
+    <div id="loading" class="loading">
+      <div class="loading-spinner"></div>
+    </div>
+    
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    
+    <script>
+      // Hide loading screen when page is loaded
+      window.addEventListener('load', () => {
+        const loading = document.getElementById('loading');
+        if (loading) {
+          setTimeout(() => {
+            loading.classList.add('hidden');
+            setTimeout(() => {
+              loading.remove();
+            }, 500);
+          }, 1000);
+        }
+      });
+    </script>
   </body>
 </html>
